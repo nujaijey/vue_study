@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 20px;
+        }
+
+        div {
+            width: 50%;
+            height: 10rem;
+            float: left;
+        }
+
+        .left {
+            background-color: blueviolet;
+        }
+
+        .right {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left"></div>
+    <div class="right"></div>
+    <script>
+        // onresize事件会在窗口或框架被调整大小时发生
+        window.onresize = function () {
+            // 得到窗口的宽度
+            var windowWidth = document.documentElement.clientWidth;
+            // 得到当前div高度的比例状态，需要计算新的高度
+            // 500/10指的是以窗口宽度为500px，div高度为10rem设置的根比例
+            var height = windowWidth / (500 / 10);
+            var divs = document.getElementsByTagName("div");
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].style.height = height + 'rem';
+            }
+        }
+    </script>
+</body>
+
+</html>
