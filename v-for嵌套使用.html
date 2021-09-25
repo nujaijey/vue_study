@@ -20,7 +20,8 @@
 <body>
     <div id="app">
         <table>
-            <tr v-for="i in number" :key="i">
+            <!-- key用来给每一项值增加唯一标识，为了区分元素，实现最小量的更新 -->
+            <tr v-for="i in num" :key="i">
                 <td v-for="j in i" :key="j">
                     {{j}}*{{i}}={{j*i}}
                 </td>
@@ -32,7 +33,7 @@
         var vue = new Vue({
             el: "#app",
             data: {
-                number: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                num: [1, 2, 3, 4, 5, 6, 7, 8, 9]
             }
         })
     </script>
