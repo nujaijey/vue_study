@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-text和v-html -->
+        <p>---{{a}}---</p>
+        <p v-text="a">---</p>
+        <p v-html="a">---</p>
+        <!-- v-cloak结合CSS可以解决双大括号渲染时显示编译前本文的问题 -->
+        <p v-cloak>{{a}}</p>
+        <!-- v-once：数据变化不会引起视图渲染 -->
+        <p v-once>{{b}}</p>
+        <button @click="add(5)">点我加1</button>
+        <!-- v-pre：跳过该元素编译过程，即显示编译前的结果 -->
+        <p v-pre>{{a}}</p>
+        <!-- v-on:简写为@ -->
+        <button v-on:click="minus">点我减1</button>
+    </div>
+    <script src="js/vue_dev.js"></script>
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                a: "<h1>我是要插值的内容</h1>",
+                b: 100
+            },
+            methods: {
+                // 方法可以传入参数
+                add(num) {
+                    this.b += num
+                    console.log(this.b)
+                },
+                minus() {
+                    this.b--
+                    console.log(this.b)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

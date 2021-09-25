@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>身高</th>
+            </tr>
+            <tr v-for="(item,index) in arr">
+                <!-- JSON中的name -->
+                <td>{{item.name}}</td>
+                <!-- JSON中的age -->
+                <td>{{item.age}}</td>
+                <!-- JSON中的sex -->
+                <td>{{item.sex}}</td>
+                <!-- JSON中的height -->
+                <td>{{item.height}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="js/vue_dev.js"></script>
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                arr: [
+                    { name: '小明', age: '18', sex: '男', height: '185' },
+                    { name: '小红', age: '22', sex: '男', height: '166' },
+                    { name: '小陈', age: '26', sex: '男', height: '172' },
+                    { name: '小也', age: '23', sex: '女', height: '164' }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
