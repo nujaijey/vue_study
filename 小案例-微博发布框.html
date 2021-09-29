@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .warm {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <textarea cols="30" rows="10" placeholder="请输入你的心情....." v-model="content"></textarea>
+        <!-- warm生效机制：当内容数量大于100时，字体渲染为红色 -->
+        <p :class="{warm: content.length > 100}">{{content.length}}/100</p>
+        <p>
+            <!-- disabled生效机制：当内容数量大于100时，不能点击 -->
+            <button :disabled="content.length > 100">发布</button>
+            <button @click="clear" :disabled="content.length <= 0">重置</button>
+        </p>
+    </div>
+    <script src="js/vue_dev.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                content: ''
+            },
+            methods: {
+                // 清空文本输入框的内容
+                clear() {
+                    this.content = ''
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
