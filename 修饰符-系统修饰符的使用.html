@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- .space是vue对keyCode为32封装的别名，以下两行代码表示的内容相同 -->
+        <input type="text" name="" id="" @keyup.space="addA" v-model="a">
+        <input type="text" name="" id="" @keyup.32="addB" v-model="b">
+    </div>
+</body>
+<script src="js/vue_dev.js"></script>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            a: 100,
+            b: 50
+        },
+        methods: {
+            addA() {
+                this.a++
+            },
+            addB() {
+                this.b++
+            }
+        }
+    })
+</script>
+
+</html>

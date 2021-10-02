@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 300px;
+            height: 300px;
+            padding: 50px;
+            border-radius: 50%;
+            background-color: orange;
+        }
+
+        .center {
+            width: 200px;
+            height: 200px;
+            padding: 50px;
+            border-radius: 50%;
+            background-color: pink;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- .stop：阻止事件冒泡 -->
+        <!-- <div class="outer" @click="outer">
+            <div class="center" @click.stop="center">
+                <div class="inner" @click="inner"></div>
+            </div>
+        </div> -->
+        <!-- .self：点击元素本身才会触发事件，不接受冒泡上来得事件，也不能阻止事件冒泡 -->
+        <!-- <div class="outer" @click="outer">
+            <div class="center" @click.self="center">
+                <div class="inner" @click="inner"></div>
+            </div>
+        </div> -->
+        <!-- .prevent：阻止默认事件 -->
+        <a href="https://www.baidu.com" @click.prevent="alertDialod">点我跳转</a>
+        <!-- .capture：监听捕获阶段的事件 -->
+        <div class="outer" @click="outer">
+            <div class="center" @click.capture="center">
+                <div class="inner" @click="inner"></div>
+            </div>
+        </div>
+        <p>{{a}}</p>
+        <!-- .once：使事件只执行一次 -->
+        <button @click.once="add">点我加1</button>
+    </div>
+</body>
+<script src="js/vue_dev.js"></script>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            a: 100
+        },
+        methods: {
+            outer() {
+                console.log("外层")
+            },
+            center() {
+                console.log("中间")
+            },
+            inner() {
+                console.log("内层")
+            },
+            alertDialod() {
+                alert("...")
+            },
+            add() {
+                this.a++
+            }
+        }
+    })
+</script>
+
+</html>
