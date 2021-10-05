@@ -11,12 +11,11 @@
 <body>
     <div id="app">
         <p>{{a}}</p>
-        <!-- 按住ctrl键然后点击鼠标实现a加1 -->
-        <button @click.ctrl="addA">按我加1</button>
-        <!-- 此时按住ctrl和其他键也可以触发，exact修饰符可以解决这个问题 -->
-        <!-- exact：辅助其他修饰符进行精确匹配 -->
+        <!-- 按下鼠标右键触发事件 -->
+        <button @click.right.prevent="addA">按我加1</button>
         <p>{{b}}</p>
-        <button @click.ctrl.exact="addB">按我加1</button>
+        <!-- 按下鼠标滚轮键触发事件 -->
+        <button @click.middle="addB">按我加1</button>
     </div>
 </body>
 <script src="js/vue_dev.js"></script>
