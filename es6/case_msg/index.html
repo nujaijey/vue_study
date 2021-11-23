@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./msg.css">
+</head>
+
+<body>
+    <button id="pop">弹个框</button>
+    <script src="./msg.js"></script>
+    <script>
+        document.querySelector("#pop").addEventListener("click", function () {
+            new $Msg({
+                content: "真的要清空吗？<span style='color: red;'>~</span>",
+                confirm: function (e) {
+                    console.log("confirm");
+                    console.log(this)
+                },
+                cancel: function (e) {
+                    console.log("cancel");
+                    console.log(this)
+                },
+                useHTML: true
+            })
+        })
+    </script>
+</body>
+
+</html>

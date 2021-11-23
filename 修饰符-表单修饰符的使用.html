@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- .lazy：表单失去焦点时数据更新 -->
+        <p>.lazy：<input type="text" v-model.lazy="a" @input="change"></p>
+        <p>{{a}}</p>
+        <!-- .number：将内容转化为数字 -->
+        <p>.number：<input type="text" v-model.number="b" @input="change"></p>
+        <p>{{b}}</p>
+        <!-- .trim：过滤首尾空格 -->
+        <p>.trim：<input type="text" v-model.trim="c" @input="change"></p>
+        <p>{{c}}</p>
+    </div>
+</body>
+<script src="js/vue_dev.js"></script>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            a: '100',
+            b: '100',
+            c: '100'
+        },
+        methods: {
+            change() {
+                console.log('a:' + this.a)
+                console.log('b:' + this.b)
+                console.log('c:' + this.c)
+            }
+        }
+    })
+</script>
+
+</html>

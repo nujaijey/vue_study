@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字符串扩展
+        // 字符串部分新方法
+        // padStart padEnd 补充开头/结尾
+        {
+            let str = 'i';
+            let str1 = str.padStart(6, 'mooc');
+            console.log(str1);
+            let str2 = str.padEnd(6, 'mooc');
+            console.log(str2);
+            console.log('---------------')
+        }
+
+        // 重复
+        {
+            console.log('i'.repeat(10));
+            // 与下面代码功能相同
+            function repeat(str, num) {
+                // new Array(n+1).join(str)：一个长度为n+1的空数组用str去拼接成字符串，即为n个str重复
+                return new Array(num + 1).join(str)
+            }
+            console.log(repeat('i', 3))
+            console.log('---------------')
+        }
+
+        // startWith endWith 判断是否以...开头/结尾
+        {
+            const str = 'A promise is a promise';
+            console.log(str.startsWith('A pro')); // true
+            console.log(str.startsWith('B')); // false
+
+            console.log(str.endsWith('promise')); // true
+            console.log(str.endsWith('A')); // false
+            console.log('---------------')
+        }
+
+        // includes 判断是否包含
+        {
+            const str = 'A promise is a promise';
+            // if(str.indexOf('promise')!== -1)
+            // ~运算符：~x = -(x+1)
+            if (~str.indexOf('promise')) {
+                console.log('存在1');
+            }
+
+            if (str.includes('promise')) {
+                console.log('存在2')
+                console.log('---------------')
+            }
+        }
+
+        // 使用for-of遍历字符串
+        {
+            let str = 'PROMISE';
+            const map = { A: '100', B: '99', C: '98', D: '97', E: '96', F: '95', G: '94', H: '93', I: '92', J: '91', K: '90', L: '89', M: '88', N: '87', O: '86', P: '85', Q: '84', R: '83', S: '82', T: '81', U: '80', V: '79', W: '78', X: '77', Y: '76', Z: '75' };
+            const words = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            // 方法1：forEach
+            // var oStr = str.split('');
+            // oStr.forEach((word, index) => {
+            //     if (words.includes(word)) oStr[index] = map[word]
+            // });
+            // console.log(oStr.join(''))
+            // 方法2：for-of
+            let newStr = '';
+            for (let word of str) {
+                if (words.includes(word)) newStr += map[word]
+            }
+            console.log(newStr)
+            console.log('---------------')
+        }
+
+        // 数值扩展
+        // 数值部分新方法
+        // Number.parseInt Number.parseFloat 转整数/浮点数
+        console.log(Number.parseInt(1.23)); // 1
+        console.log(Number.parseFloat(1.23)); // 1.23
+        console.log('---------------')
+
+        // isNaN 判断是否为NaN
+        console.log(Number.isNaN(NaN)); // true
+        console.log(Number.isNaN(-NaN)); // true
+        console.log(Number.isNaN(1)); // false
+        console.log(Number.isNaN('1')); // false
+        console.log(Number.isNaN(true)); // false
+        console.log('---------------')
+
+        // isFinite 判断是否有限
+        console.log(Number.isFinite(Infinity));  // false
+        console.log(Number.isFinite(2 / 0));  // false
+        console.log(Number.isFinite(1234));  // true
+        console.log(Number.isFinite('1234'));  // false
+        console.log(Number.isFinite(true));  // false
+        console.log(Number.isFinite(NaN));  // false
+        console.log('---------------')
+
+
+        // Number.MAX_SAFE_INTEGER Number.MIN_SAFE_INTEGER 最大/小安全数
+        // Number.isSafeInteger 判断是否为安全数
+        console.log(Number.MAX_SAFE_INTEGER);
+        console.log(Number.MIN_SAFE_INTEGER);
+        console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)); // fasle
+        console.log(Number.isSafeInteger(Number.MIN_SAFE_INTEGER - 1)); // false
+        console.log('---------------')
+
+        // 幂运算：**，默认从右往左计算，比如2**10**0=2=2**(10**0)
+        {
+            let a = 2 ** 10 ** 0;
+            console.log(a);
+            console.log('---------------')
+        }
+
+        // 函数扩展
+        // 默认参数
+        function People({ name, age = 36 } = { name: 1 }) {
+            console.log(name, age); // 3 36
+            console.log('---------------')
+        }
+        People({ name: 3 });
+
+        // 扩展运算符用于接收剩余参数时称为剩余参数，其作用是将剩余参数聚合为一个数组，剩余参数只能放在参数的最后一位
+        {
+            function sum(...numbers) {
+                return numbers.reduce(function (a, b) {
+                    return a + b;
+                }, 0);
+            }
+        }
+        console.log(sum(1, 2, 3, 4))
+        console.log('---------------')
+
+        // 箭头函数
+        const add1 = a => {
+            a += 1;
+            return a;
+        }
+        // 等同于
+        const add2 = function (a) {
+            a += 1;
+            return a
+        }
+        console.log(add1(1, 2));
+        console.log(add2(1, 2));
+
+        // 箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分
+        const f1 = () => 5;
+        // 等同于
+        const f2 = function () { return 5 };
+
+        const sum1 = (num1, num2) => num1 + num2;
+        // 等同于
+        const sum2 = function (num1, num2) {
+            return num1 + num2;
+        };
+        console.log('---------------')
+
+        // void关键字可以使本来有返回值的函数不返回或者返回undefined
+        {
+            const pop = arr => void arr.pop();
+            console.log(pop([1, 2, 3, 4])); // undefined
+            console.log('---------------')
+        }
+
+        // 对象扩展
+        // 简洁表达式
+        {
+            const getUserInfo = (id = 1) => {
+                const name = 'xiaoming';
+                const age = 10;
+                return {
+                    // name:name, // 简洁表达式如下
+                    name,
+                    // age:age, // 简洁表达式如下
+                    age,
+                    // say :function(){ // 简洁表达式如下
+                    say() {
+                        console.log(this.name, this.age)
+                    }
+                }
+            }
+            const xiaoming = getUserInfo();
+            console.log(xiaoming.name);
+            console.log(xiaoming.age);
+            xiaoming.say();
+            console.log('---------------')
+        }
+
+        // 属性表达式
+        {
+            const obj = {
+                a: 1,
+                $abc: 2,
+                'jkfhdahflahjlojh42p5642j': 3
+            }
+            const key = 'age';
+            const xiaoming = {
+                name: 'xiaoming',
+                [`${key}123`]: 14
+            }
+            console.log(xiaoming);
+            console.log('---------------')
+        }
+
+        {
+            const obj1 = {
+                a: 1,
+                b: 2,
+                d: {
+                    aa: 1,
+                    bb: 2
+                }
+            };
+            const obj2 = {
+                c: 3,
+                a: 9
+            };
+            // 复制对象
+            const cObj1 = { ...obj1 };
+            console.log(obj1.d.aa); // 1
+            cObj1.d.aa = 999;
+            console.log(obj1.d.aa); // 999
+            console.log(cObj1.d.aa); // 999
+            console.log('---------------')
+
+            // 合并对象
+            const newObj = { ...obj2, ...obj1 };
+            newObj.d.aa = 22;
+            console.log(obj1.d.aa); // 22
+            console.log(newObj.d.aa); // 22
+            console.log('---------------')
+        }
+
+        // 对象部分新方法
+        // Object.is  判断是否相等
+        {
+            console.log(Object.is(+0, -0)); // false
+            console.log(+0 === -0);  // true
+            console.log(Object.is(NaN, NaN)); // true
+            console.log(NaN === NaN); // false
+        }
+
+        // Object.assign 合并对象
+        {
+            const obj1 = Object.assign({ a: 1 }, { b: 2 }, { c: 3 }, { d: 4, e: 5 });
+            console.log(obj1);
+            console.log('---------------')
+            const obj2 = {
+                a: 1,
+                b: {
+                    c: 2
+                }
+            };
+            let newObj = Object.assign({ a: 3 }, obj2);
+            console.log(newObj.a); // 1 后者覆盖前者
+            console.log(newObj.b.c); // 2
+            newObj.b.c = 100;
+            console.log(newObj.b.c); // 100
+            console.log('---------------')
+        }
+
+        {
+            const obj = {
+                a: 1,
+                b: 2,
+                c: 3,
+                d: 4
+            };
+            // Object.keys 对象的key
+            console.log(Object.keys(obj)); // ['a', 'b', 'c', 'd']
+
+            // Object.values 对象的value
+            console.log(Object.values(obj)); // [1, 2, 3, 4]
+
+            // Object.entries 对象的[key,value]
+            console.log(Object.entries(obj));
+
+            // for-of
+            for (let [k, v] of Object.entries(obj)) {
+                console.log(k, v)
+            }
+
+            // __proto__ 对象的原型对象
+            console.log(obj.__proto__);
+
+
+            // Object.setPrototypeOf(object, prototype) 修改对象的原型对象，将prototype对象设为object对象的原型
+            const obj1 = { a: 1 };
+            const obj2 = { b: 1 };
+            const obj3 = Object.create(obj1);
+            console.log(obj3.__proto__);
+            Object.setPrototypeOf(obj3, obj2)
+            console.log(obj3.__proto__);
+
+            // Object.getPrototypeOf 获取对象的原型对象
+            console.log(obj3.__proto__);
+            console.log(Object.getPrototypeOf(obj3));
+            console.log(obj3.__proto__ === Object.getPrototypeOf(obj3)); // true
+
+            // super 通过super关键字可以访问到原型对象上的属性和方法
+            const obj4 = { name: 'xiaoming' };
+            const cObj4 = {
+                // 需要注意的是，对象的简洁表达式才能访问到super
+                say() {
+                    console.log(`My name is ${super.name}`);
+                }
+            }
+            Object.setPrototypeOf(cObj4, obj4);
+            cObj4.say();
+            console.log('---------------')
+        }
+
+        // 数组扩展
+        {
+            // 结合扩展运算符使用
+            function foo(a, b, c) {
+                console.log(a);
+                console.log(b);
+                console.log(c);
+                console.log('---------------')
+            }
+            foo(...[1, 2, 3]);
+
+            const user = ['小明', 14, ['吃饭', '睡觉', '打豆豆'], '我没有女朋友'];
+            function say(name, age, hobby, desc) {
+                console.log(`我叫${name}，今年${age}岁，我喜欢${hobby.join('')}，${desc}`);
+            }
+
+            // 以往的方式
+            say(user[0], user[1], user[2], user[3]);
+            // 扩展运算符，将数组展开
+            say(...user);
+            console.log('---------------')
+
+            const arr1 = [1, 2, 3, 4];
+            const arr2 = [4, 2, 2, 1];
+            const arr3 = [2.2, '123', false];
+
+            // 合并数组
+            const cArr1 = [1, 2, 3, ...arr3];
+            console.log(cArr1);
+            const cArr2 = [...arr1, ...arr2, ...arr3];
+            console.log(cArr2);
+
+            // 复制数组
+            const cArr3 = [...arr1];
+            console.log(cArr3);
+            const [...cArr4] = arr3;
+            console.log(cArr4);
+            console.log('---------------')
+        }
+
+        // 新的方法
+        {
+            // Array.from 将类数组对象、可遍历对象转为数组
+            // 类数组对象：属性名必须为数值型或字符串型的数字
+            const obj = {
+                0: 1,
+                1: '22',
+                2: false,
+                length: 2 // 会根据length取舍属性
+            }
+            // 第二个参数为回调函数，用来对每一个元素进行处理，将处理后的值放入返回的数组
+            console.log(Array.from(obj, item => item * 2)); // [2, 44]
+            console.log('---------------')
+
+            // 以往对象转数组的方式
+            const obj1 = {
+                0: 1,
+                1: '22',
+                2: false,
+                length: 2 // 会根据length取舍属性
+            }
+            console.log(Array.prototype.slice.call(obj1));
+            console.log([].slice.call(obj1));
+            // const arr = [...obj1];
+            // console.log(arr);
+            console.log('---------------')
+
+            // Array.of 将一组值转为数组
+            console.log(Array.of(1, 2, 'vvs', false))
+            console.log('---------------')
+
+            // fill 使用给定值，填充一个数组
+            console.log(['a', 'b', 'c', 'd'].fill(7)); // 4个元素都被替换成7
+            console.log(new Array(3).fill(7)); // 空数组的3个都被填充为7
+            console.log(['a', 'b', 'c', 'd'].fill(7, 1, 2)); // 第二个和第三个参数，用于指定填充的起始位置和结束位置，包含开始不包含结束  索引为1的元素被替换为7
+            console.log(new Array(3).fill(7, 1, 2)); // 空数组索引为1的元素被填充为7
+            console.log('---------------')
+
+            // includes 判断是否包含
+            console.log([0, 1, 2, 3].includes(3)); // true
+            console.log([0, 1, 2, 3].includes(5)); // false
+            console.log('---------------')
+
+            const arr = [1, 2, 3, 55];
+            // keys 数组的key
+            for (let i of arr.keys()) {
+                console.log(i)
+            }
+
+            console.log('---------------')
+
+            // values 数组的values
+            for (let v of arr.values()) {
+                console.log(v)
+            }
+
+            console.log('---------------')
+
+            // entries 数组的[key,value]
+            for (let kv of arr.entries()) {
+                console.log(kv)
+            }
+            console.log('---------------')
+
+            for (let [k, v] of arr.entries()) {
+                console.log(k, v)
+            }
+            console.log('---------------')
+
+            // find 根据条件（回调），按顺序遍历数组，当元素符合条件时回调返回值为true，就返回当前遍历到的元素的值，没有符合条件的元素则返回undefined
+            console.log([1, -3, 43].find(n => n < 0))
+            console.log([1, 3, 43].find(n => n < 0))
+            console.log('---------------')
+
+            // findIndex 根据条件（回调），按顺序遍历数组，当元素符合条件时回调返回值为true，就返回当前遍历到的元素的下标，没有符合条件的元素则返回-1
+            console.log([1, -3, 43].findIndex(n => n < 0))
+            console.log([1, 3, 43].findIndex(n => n < 0))
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -12,8 +12,10 @@
     <div id="app">
         <input type="text" name="" id="" v-model.number="a" @input="add">
         <p>{{a}}</p>
+        <button @click="test">按我</button>
     </div>
     <script src="js/vue_dev.js"></script>
+    <script src="js/main.js"></script>
     <script>
         var vue = new Vue({
             el: '#app',
@@ -24,9 +26,52 @@
                 add() {
                     console.log(this.a)
                     console.log(typeof this.a)
-                }
+                },
+                test() {
+                    for (let a; a < 5; a++) {
+                        console.log(a); //什么都不会输出，因为这时a为undefined，undefined<5为false，所以不会打印任何内容
+                    }
+                },
+
             }
         })
+
+        for (let i = 1; i <= 10; i++) {
+            var btn = document.createElement("button");
+            btn.innerHTML = i;
+            btn.onclick = function () {
+                alert(i)
+            }
+            document.body.appendChild(btn)
+        }
+
+        var a = null
+        var b = null
+        console.log(a == b, a === b)
+
+        Object.defineProperty(Object, 'freezePolyfill', {
+            value: function (obj) {
+                var i;
+                for (i in obj) {
+                    if (obj.hasOwnProperty(i)) {
+                        Object.defineProperty(obj, i, {
+                            writable: false
+                        });
+                    }
+                }
+                Object.seal(obj);
+            }
+        });
+
+        const xiaoming = {
+            age: 14,
+            name: '小明',
+            obj: {
+                a: 1
+            }
+        };
+
+        Object.freezePolyfill(xiaoming);
     </script>
 </body>
 
